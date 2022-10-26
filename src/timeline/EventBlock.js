@@ -38,11 +38,11 @@ const EventBlock = (props) => {
 
             {numberOfLines > 1 ? (
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
-                    <Image style={{ width: 25, height: 25, marginRight: 5 }} source={require('../../../../src/images/calendar.png')} />
+                    <Image style={{ width: 25, height: 25, marginRight: 5 }} source={require('../calendar/img/calendar.png')} />
                     <Text numberOfLines={numberOfLines - 1} style={[styles.eventSummary, {marginRight:20}]}>
                         {new XDate(event.start).toString("dd/mm/yyyy") + "  "}
                     </Text>
-                    <Image style={{ width: 25, height: 25, marginRight: 5 }} source={require('../../../../src/images/time.png')} />
+                    <Image style={{ width: 25, height: 25, marginRight: 5 }} source={require('../calendar/img/time.png')} />
 
                     <Text numberOfLines={numberOfLines - 1} style={[styles.eventSummary]}>
                         {new XDate(event.start).toString(formatTime)} - {new XDate(event.end).toString(formatTime)}
