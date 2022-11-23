@@ -22,33 +22,33 @@ const EventBlock = (props) => {
     const _onPress = useCallback(() => {
         onPress(index);
     }, [index, onPress]);
-    return (<TouchableOpacity activeOpacity={0.9} onPress={_onPress} style={[styles.event, eventStyle, ]}>
+    return (<TouchableOpacity activeOpacity={0.9} onPress={_onPress} style={[styles.event, eventStyle,{minHeight:45} ]}>
       {renderEvent ? (renderEvent(event)) : (<View style={[{width:'100%', height:'100%'}, (( new Date().getTime()> new Date(event.start).getTime())? {backgroundColor:'#EBF1FF'} : {backgroundColor:'#BCCDFA'} ) ]}>
             <View style={[{ height: '40%' }, (( new Date().getTime()> new Date(event.start).getTime())? {backgroundColor:'#C9D3E9'} : {backgroundColor: '#a3b8ec'} ) ]}>
                 <View style={{
                     justifyContent:'center',
                     paddingLeft: '5%',
                 }}>
-                    <Text numberOfLines={1} style={[styles.eventTitle]}>
+                    <Text numberOfLines={1} style={[styles.eventTitle,new Date().getTime()> new Date(event.start).getTime()?{color:'#8D97AB'}:null]}>
                         {event.title || 'Event'}
                     </Text>
                 </View>
                 
             </View>
 
-            {numberOfLines > 1 ? (
+            {/* {numberOfLines > 1 ? ( */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
-                    <Image style={{ width: 25, height: 25, marginRight: 5 }} source={require('../calendar/img/calendar.png')} />
-                    <Text numberOfLines={numberOfLines - 1} style={[styles.eventSummary, {marginRight:20}]}>
+                    <Image style={[{ width: 25, height: 25, marginRight: 5 }, new Date().getTime()>new Date(event.start).getTime()?{tintColor:'#8D97AB'}:null]} source={require('../calendar/img/calendar.png')} />
+                    <Text numberOfLines={numberOfLines - 1} style={[styles.eventSummary, {marginRight:20}, new Date().getTime()>new Date(event.start).getTime()?{color:'#8D97AB'}:null]}>
                         {new XDate(event.start).toString("dd/mm/yyyy") + "  "}
                     </Text>
-                    <Image style={{ width: 25, height: 25, marginRight: 5 }} source={require('../calendar/img/time.png')} />
+                    <Image style={[{ width: 25, height: 25, marginRight: 5 },new Date().getTime()>new Date(event.start).getTime()?{tintColor:'#8D97AB'}:null]} source={require('../calendar/img/time.png')} />
 
-                    <Text numberOfLines={numberOfLines - 1} style={[styles.eventSummary]}>
+                    <Text numberOfLines={numberOfLines - 1} style={[styles.eventSummary, new Date().getTime()>new Date(event.start).getTime()?{color:'#8D97AB'}:null]}>
                         {new XDate(event.start).toString(formatTime)} - {new XDate(event.end).toString(formatTime)}
                     </Text>
                 </View>
-            ) : null}
+            {/* ) : null} */}
             {/* {numberOfLines > 2 ? (<Text style={styles.eventTimes} numberOfLines={1}>
                 {new XDate(event.start).toString("dd/mm/yyyy") +"  "}
                 {new XDate(event.start).toString(formatTime)} - {new XDate(event.end).toString(formatTime)}
